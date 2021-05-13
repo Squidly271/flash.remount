@@ -2,10 +2,10 @@
 <!DOCTYPE PLUGIN [
 <!ENTITY name      "flash.remount">
 <!ENTITY author    "Andrew Zawadzki">
-<!ENTITY version   "2021.05.13">
+<!ENTITY version   "2021.05.13a">
 <!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
 <!ENTITY github    "Squidly271/flash.remount">
-<!ENTITY pluginURL "https://raw.githubusercontent.com/Squidly271/flash.remount/master/flash.remount.plg">
+<!ENTITY pluginURL "https://raw.githubusercontent.com/Squidly271/flash.remount/main/flash.remount.plg">
 ]>
 
 <PLUGIN name="&name;" author="&author;" version="&version;" pluginURL="&pluginURL;" min="6.6.0" support="https://forums.unraid.net/topic/76211-plugin-ca-dynamix-unlimited-width/" icon="arrows-h">
