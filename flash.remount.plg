@@ -2,7 +2,7 @@
 <!DOCTYPE PLUGIN [
 <!ENTITY name      "flash.remount">
 <!ENTITY author    "Andrew Zawadzki">
-<!ENTITY version   "2021.05.13a">
+<!ENTITY version   "2021.05.13b">
 <!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
 <!ENTITY github    "Squidly271/flash.remount">
 <!ENTITY pluginURL "https://raw.githubusercontent.com/Squidly271/flash.remount/main/flash.remount.plg">
