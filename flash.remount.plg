@@ -8,7 +8,7 @@
 <!ENTITY pluginURL "https://raw.githubusercontent.com/Squidly271/flash.remount/main/flash.remount.plg">
 ]>
 
-<PLUGIN name="&name;" author="&author;" version="&version;" pluginURL="&pluginURL;" min="6.6.0" support="https://forums.unraid.net/topic/76211-plugin-ca-dynamix-unlimited-width/" icon="arrows-h">
+<PLUGIN name="&name;" author="&author;" version="&version;" pluginURL="&pluginURL;" min="6.6.0" support="https://forums.unraid.net/topic/76211-plugin-ca-dynamix-unlimited-width/" icon="usb">
 
 <CHANGES>
 ###2021.05.13
