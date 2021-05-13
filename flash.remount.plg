@@ -36,12 +36,18 @@ mount /dev/flashmount1 /boot</INLINE>
 <![CDATA[
 <?PHP
 exec("chmod 0777 /usr/local/emhttp/plugins/flash.remount/remount.sh");
-$disks = parse_ini_file("/var/local/emhttp/disks.ini",true);
+$disks = @parse_ini_file("/var/local/emhttp/disks.ini",true);
 
 @unlink("/etc/udev/rules.d/80-flash.rules");
 
 // if flashmount exists, drive has already dropped offline, so link back to it (to handle updates after the flash has been remounted)
 $flashID = is_link("/dev/flashmount") ? exec("readlink /dev/flashmount") : $disks['flash']['device'];
+if ( ! $disks ) {
+	// We wind up here on first boots, because disks.ini doesn't exist yet
+	$ff = exec("mount | grep -m 1 /boot");
+	$flashID = str_replace("/dev/","",explode(" ",$ff)[0]);
+	$flashID = preg_replace("/[^a-zA-Z]/","",$flashID);
+}
 $vendor = trim(exec("udevadm info -a -n /dev/$flashID | grep -m 1 idVendor"));
 $product = trim(exec("udevadm info -a -n /dev/$flashID | grep -m 1 idProduct"));
 $serial = trim(exec("udevadm info -a -n /dev/$flashID | grep -m 1 ATTRS{serial}"));
