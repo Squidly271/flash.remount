@@ -41,11 +41,6 @@ $disks = parse_ini_file("/var/local/emhttp/disks.ini",true);
 @unlink("/etc/udev/rules.d/80-flash.rules");
 
 // if flashmount exists, drive has already dropped offline, so link back to it (to handle updates after the flash has been remounted)
-/* if ( is_link("/dev/flashmount") ) {
-	$flashID = exec("readlink /dev/flashmount");
-} else {
-	$flashID = $disks['flash']['device'];
-} */
 $flashID = is_link("/dev/flashmount") ? exec("readlink /dev/flashmount") : $disks['flash']['device'];
 $vendor = trim(exec("udevadm info -a -n /dev/$flashID | grep -m 1 idVendor"));
 $product = trim(exec("udevadm info -a -n /dev/$flashID | grep -m 1 idProduct"));
