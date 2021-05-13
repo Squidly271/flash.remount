@@ -2,7 +2,7 @@
 <!DOCTYPE PLUGIN [
 <!ENTITY name      "flash.remount">
 <!ENTITY author    "Andrew Zawadzki">
-<!ENTITY version   "2021.05.13b">
+<!ENTITY version   "2021.05.13c">
 <!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
 <!ENTITY github    "Squidly271/flash.remount">
 <!ENTITY pluginURL "https://raw.githubusercontent.com/Squidly271/flash.remount/main/flash.remount.plg">
@@ -41,7 +41,12 @@ $disks = parse_ini_file("/var/local/emhttp/disks.ini",true);
 @unlink("/etc/udev/rules.d/80-flash.rules");
 
 // if flashmount exists, drive has already dropped offline, so link back to it (to handle updates after the flash has been remounted)
-$flashID = is_file("/dev/flashmount") ? "flashmount" : $disks['flash']['device'];
+if ( is_file("/dev/flashmount") ) {
+  $ls = explode(">",exec("ls -l /dev/flashmount"));
+	$flashID = trim($ls[1]);
+} else {
+	$flashID = $disks['flash']['device'];
+}
 $vendor = trim(exec("udevadm info -a -n /dev/$flashID | grep -m 1 idVendor"));
 $product = trim(exec("udevadm info -a -n /dev/$flashID | grep -m 1 idProduct"));
 $serial = trim(exec("udevadm info -a -n /dev/$flashID | grep -m 1 ATTRS{serial}"));
