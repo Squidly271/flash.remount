@@ -11,6 +11,9 @@
 <PLUGIN name="&name;" author="&author;" version="&version;" pluginURL="&pluginURL;" min="6.6.0" icon="usb">
 
 <CHANGES>
+###2021.06.21
+- Remount with proper permissions
+
 ###2021.05.13
 - Initial Release
 </CHANGES>
