@@ -2,7 +2,7 @@
 <!DOCTYPE PLUGIN [
 <!ENTITY name      "flash.remount">
 <!ENTITY author    "Andrew Zawadzki">
-<!ENTITY version   "2021.06.21">
+<!ENTITY version   "2021.06.21a">
 <!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
 <!ENTITY github    "Squidly271/flash.remount">
 <!ENTITY pluginURL "https://raw.githubusercontent.com/Squidly271/flash.remount/main/flash.remount.plg">
@@ -11,6 +11,9 @@
 <PLUGIN name="&name;" author="&author;" version="&version;" pluginURL="&pluginURL;" min="6.6.0" icon="usb">
 
 <CHANGES>
+###2021.06.21a
+- fsck after mounting
+
 ###2021.06.21
 - Remount with proper permissions
 
@@ -32,6 +35,7 @@ A plugin to automatically remount your flash drive if it happens to drop offline
 #!/bin/bash
 logger Remounting flash drive
 mount /dev/flashmount1 /boot -o noatime,nodiratime,dmask=77,fmask=177,shortname=mixed
+fsck.fat -w -a -l -v /dev/flashmount1
 </INLINE>
 </FILE>
 
