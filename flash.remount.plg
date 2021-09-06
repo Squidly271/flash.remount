@@ -2,7 +2,7 @@
 <!DOCTYPE PLUGIN [
 <!ENTITY name      "flash.remount">
 <!ENTITY author    "Andrew Zawadzki">
-<!ENTITY version   "2021.06.21a">
+<!ENTITY version   "2021.09.06">
 <!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
 <!ENTITY github    "Squidly271/flash.remount">
 <!ENTITY pluginURL "https://raw.githubusercontent.com/Squidly271/flash.remount/main/flash.remount.plg">
@@ -11,13 +11,7 @@
 <PLUGIN name="&name;" author="&author;" version="&version;" pluginURL="&pluginURL;" min="6.6.0" icon="usb">
 
 <CHANGES>
-###2021.06.21a
-- fsck after mounting
-
-###2021.06.21
-- Remount with proper permissions
-
-###2021.05.13
+###2021.09.06
 - Initial Release
 </CHANGES>
 
