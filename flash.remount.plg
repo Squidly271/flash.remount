@@ -2,7 +2,7 @@
 <!DOCTYPE PLUGIN [
 <!ENTITY name      "flash.remount">
 <!ENTITY author    "Andrew Zawadzki">
-<!ENTITY version   "2021.09.06">
+<!ENTITY version   "2024.02.15">
 <!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
 <!ENTITY github    "Squidly271/flash.remount">
 <!ENTITY pluginURL "https://raw.githubusercontent.com/Squidly271/flash.remount/main/flash.remount.plg">
@@ -11,6 +11,9 @@
 <PLUGIN name="&name;" author="&author;" version="&version;" pluginURL="&pluginURL;" min="6.6.0" icon="usb">
 
 <CHANGES>
+###2024.02.15
+- Compatibility update
+
 ###2021.09.06
 - Initial Release
 </CHANGES>
@@ -29,8 +32,18 @@ A plugin to automatically remount your flash drive if it happens to drop offline
 #!/bin/bash
 if [ -d /mnt/user ]; then
 	logger Remounting flash drive
-	mount /dev/flashmount1 /boot -o noatime,nodiratime,dmask=77,fmask=177,shortname=mixed
-	fsck.fat -w -a -l -v /dev/flashmount1
+	if blkid -s TYPE /dev/flashmount1 | grep -q "btrfs" ; then
+		mount -t btrfs -o auto,rw,noatime,nodiratime,degraded,discard=sync /dev/flashmount1 /boot
+		chown -R root:root /boot
+  		chmod -R 644 /boot
+	elif blkid -s TYPE /dev/flashmount1 | grep -q "xfs" ; then
+		mount -t xfs -o auto,rw,noatime,nodiratime,discard,wsync /dev/flashmount1 /boot
+		chown -R root:root /boot
+  		chmod -R 644 /boot
+	else
+		mount /dev/flashmount1 /boot -o noatime,nodiratime,dmask=77,fmask=177,shortname=mixed
+		fsck.fat -w -a -l -v /dev/flashmount1
+	fi
 fi
 </INLINE>
 </FILE>
